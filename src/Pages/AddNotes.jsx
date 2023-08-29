@@ -52,8 +52,8 @@ const AddNotes = () => {
           <input
             type="text"
             id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={title} 
+            onChange={(e) => setTitle(e.target.value)} required
           />
         </div>
         <div className="input-group">
@@ -61,7 +61,7 @@ const AddNotes = () => {
           <textarea
             id="content"
             value={content}
-            onChange={(e) => setContent(e.target.value)}
+            onChange={(e) => setContent(e.target.value)} required
           />
         </div>
        {!isLoading &&<button type="submit" className="login-button">
