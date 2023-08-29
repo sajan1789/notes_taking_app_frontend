@@ -8,7 +8,7 @@ import {
   ExternalLinkIcon,
   EditIcon,
   RepeatIcon,
-  AddIcon,
+  AddIcon
 } from "@chakra-ui/icons";
 
 import {
@@ -16,11 +16,24 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  IconButton,
+  IconButton,useToast
 } from "@chakra-ui/react";
+
 const Navbar = () => {
   const { user } = useSelector((store) => store.authReducer);
   const dispatch = useDispatch();
+  const toast = useToast()
+   const handleLogout=()=>{
+    toast({
+      position: 'top',
+      title: 'Logout Successfull',
+      
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
+    dispatch(logout())
+   }
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -38,7 +51,7 @@ const Navbar = () => {
               <Link
                 to="/"
                 className="navbar-link"
-                onClick={() => dispatch(logout())}
+                onClick={handleLogout}
               >
                 Logout
               </Link>
@@ -74,44 +87,54 @@ const Navbar = () => {
            
           />
           <MenuList  bgGradient="linear(to-l, #7928CA, #FF0080)" >
+          <Link to="/" className="navbar-link" >
             <MenuItem  bgGradient="linear(to-l, #7928CA, #FF0080)" _hover={{ bg: 'gray.400' }}>
               <li className="navbar-item"  >
-                <Link to="/" className="navbar-link" >
+               
                   Home
-                </Link>
+                
               </li>
             </MenuItem >
-            <MenuItem  bgGradient="linear(to-l, #7928CA, #FF0080)"  _hover={{ bg: 'gray.400' }} >
-              <li className="navbar-item">
-                {user ? (
-                  <Link
+            </Link>
+            {user?  <Link 
                     to="/"
                     className="navbar-link"
                     onClick={() => dispatch(logout())}
                   >
-                    Logout
-                  </Link>
-                ) : (
+                    <MenuItem  bgGradient="linear(to-l, #7928CA, #FF0080)" _hover={{ bg: 'gray.400' }}>
+                    <li className="navbar-item"  >
+               
+               Logout
+             
+           </li>
+                    </MenuItem>
+                  </Link>:
                   <Link to="/login" className="navbar-link">
-                    Login
-                  </Link>
-                )}
-              </li>
-            </MenuItem>
+                    <MenuItem  bgGradient="linear(to-l, #7928CA, #FF0080)" _hover={{ bg: 'gray.400' }}>
+                    <li className="navbar-item" >
+                      Login
+                      </li>
+                    </MenuItem>
+                    </Link>}
+           
+            <Link to="/addnotes" className="navbar-link">
             <MenuItem  bgGradient="linear(to-l, #7928CA, #FF0080)" _hover={{ bg: 'gray.400' }}>
               <li className="navbar-item">
-                <Link to="/addnotes" className="navbar-link">
+                
                   Add-Notes
-                </Link>
+                
               </li>
             </MenuItem>
+            </Link>
+            <Link to="/notes" className="navbar-link">
             <MenuItem  bgGradient="linear(to-l, #7928CA, #FF0080)" _hover={{ bg: 'gray.400' }}>
               <li className="navbar-item">
-                <Link to="/notes" className="navbar-link">
+               
                   Your Notes
-                </Link>
+                
               </li>
             </MenuItem > 
+            </Link>
             <MenuItem bgGradient="linear(to-l, #7928CA, #FF0080)" _hover={{ bg: 'gray.400' }}>
               {user ? (
                 <li className="navbar-item">

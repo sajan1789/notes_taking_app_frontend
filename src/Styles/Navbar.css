@@ -47,6 +47,7 @@
   
   .navbar-link:hover {
     text-decoration: underline;
+    
   }
 
 .navbar-in-mobile-mode{
@@ -59,7 +60,4 @@
   .navbar-in-mobile-mode{
     display: block;
   }
-}
-.navbar-in-mobile-mode{
-
 }
